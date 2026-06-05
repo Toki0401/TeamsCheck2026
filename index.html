@@ -119,14 +119,15 @@ const buildCSV = (teams, answers, allData) => {
 
 const downloadCSV = (csv, filename) => {
   // UTF-8 BOM付き（Excel日本語対応）
+  // data:URIスキームを使用（file://プロトコルでも動作）
   const bom = "\uFEFF";
-  const blob = new Blob([bom + csv], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
+  const encoded = encodeURIComponent(bom + csv);
   const a = document.createElement("a");
-  a.href = url;
+  a.href = "data:text/csv;charset=utf-8," + encoded;
   a.download = filename;
+  document.body.appendChild(a);
   a.click();
-  URL.revokeObjectURL(url);
+  document.body.removeChild(a);
 };
 
 // ===== メインコンポーネント =====
@@ -1187,6 +1188,6 @@ function TeamsInventoryBot() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(TeamsInventoryBot));
 </script>
-<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 17:46</div>
+<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 17:51</div>
 </body>
 </html>
