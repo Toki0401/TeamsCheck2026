@@ -70,7 +70,7 @@ const STATUS_COLORS = {
 };
 
 // ===== エクスポート関数 =====
-const buildCSV = (teams, answers, allData) => {
+const buildCSV = (teams, answers, allData, ownerRealName) => {
   const parseGuests = (g) => g ? g.split(",").map(x => x.trim()).filter(Boolean) : [];
   const statusLabel = { A:"A：継続", B:"B：アーカイブ", C:"C：移管削除", D:"D：完全削除", delegate:"回答者変更", pending:"未回答" };
   const teamKey = (t) => `${t.TeamName}||${t.ChannelName}`;
@@ -237,7 +237,7 @@ function TeamsInventoryBot() {
   // 個人エクスポート（自分の担当チームのみ）
   const handleExportOwner = () => {
     try {
-      const csv = buildCSV(teams, answers, allData);
+      const csv = buildCSV(teams, answers, allData, ownerRealName);
       const date = new Date().toISOString().slice(0,10).replace(/-/g,"");
       const name = ownerEmail.split("@")[0];
       window.downloadCSV(csv, `Teams棚卸回答_${name}_${date}.csv`);
@@ -1184,7 +1184,7 @@ function TeamsInventoryBot() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(TeamsInventoryBot));
 </script>
-<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 18:23</div>
+<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 18:27</div>
 <script>
 window.downloadCSV = function(csv, filename) {
   var bom = '\uFEFF';
