@@ -376,30 +376,21 @@ function TeamsInventoryBot() {
     </div>
   );
 
-  // エクスポートボックス（完了画面・ウェルカム画面で使いまわし）
-  const ExportBox = ({ compact=false }) => {
-    const unansweredInTeams = teams.filter(t => !answers[teamKey(t)]).length;
-    const allDone = teams.length > 0 && Object.keys(answers).length > 0;
-    return (
-    <div style={{ background: compact ? "#0f172a" : "linear-gradient(135deg,#0f2d0f,#14532d)", border:"2px solid #16a34a", borderRadius:"12px", padding:"18px 20px", marginBottom:"16px" }}>
-      <div style={{ color:"#4ade80", fontSize:compact?"11px":"13px", fontWeight:"700", marginBottom:"10px" }}>
-        📥 管理台帳エクスポート
+  const exportAllDone = teams.length > 0 && Object.keys(answers).length > 0;
+  const exportFull = (
+    <div style={{ background:"linear-gradient(135deg,#0f2d0f,#14532d)", border:"2px solid #16a34a", borderRadius:"12px", padding:"18px 20px", marginBottom:"16px" }}>
+      <div style={{ color:"#4ade80", fontSize:"13px", fontWeight:"700", marginBottom:"10px" }}>📥 管理台帳エクスポート</div>
+      <div style={{ color:"#94a3b8", fontSize:"11px", lineHeight:"1.8", marginBottom:"14px" }}>
+        回答データをCSVでダウンロードできます。<br />
+        IS・SFチーム用管理台帳Excelの「棚卸回答台帳」シートに貼り付けてご利用ください。
       </div>
-      {!compact && (
-        <div style={{ color:"#94a3b8", fontSize:"11px", lineHeight:"1.8", marginBottom:"14px" }}>
-          回答データをCSVでダウンロードできます。<br />
-          IS・SFチーム用管理台帳Excelの「棚卸回答台帳」シートに貼り付けてご利用ください。
-        </div>
-      )}
-      {!allDone && (
+      {!exportAllDone && (
         <div style={{ background:"#451a03", border:"1px solid #f97316", borderRadius:"8px", padding:"8px 12px", marginBottom:"12px", display:"flex", alignItems:"center", gap:"8px" }}>
           <span style={{ fontSize:"14px" }}>🔒</span>
-          <span style={{ color:"#fed7aa", fontSize:"11px", fontWeight:"600" }}>
-            1件以上回答するとCSVダウンロードが可能になります
-          </span>
+          <span style={{ color:"#fed7aa", fontSize:"11px", fontWeight:"600" }}>1件以上回答するとCSVダウンロードが可能になります</span>
         </div>
       )}
-      {!compact && allDone && (
+      {exportAllDone && (
         <div style={{ background:"#1e3a8a", border:"1.5px solid #60a5fa", borderRadius:"10px", padding:"12px 14px", marginBottom:"12px" }}>
           <div style={{ color:"#93c5fd", fontSize:"12px", fontWeight:"700", marginBottom:"6px" }}>📋 回答完了後の手順</div>
           <div style={{ color:"white", fontSize:"14px", fontWeight:"700", lineHeight:"1.9" }}>
@@ -409,23 +400,29 @@ function TeamsInventoryBot() {
         </div>
       )}
       <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", alignItems:"center" }}>
-        <Btn onClick={handleExportOwner} v="success" disabled={!allDone}>
-          ⬇️ 自分の担当分をCSVエクスポート
-        </Btn>
+        <Btn onClick={handleExportOwner} v="success" disabled={!exportAllDone}>⬇️ 自分の担当分をCSVエクスポート</Btn>
         {exportDone && <span style={{ color:"#4ade80", fontSize:"11px", fontWeight:"600" }}>✅ ダウンロード完了！</span>}
       </div>
-      <div style={{ color:"#64748b", fontSize:"10px", marginTop:"8px" }}>
-        ※ CSVはUTF-8（BOM付き）形式です。Excelで直接開けます。
-      </div>
-      {!compact && allDone && (
-        <div style={{ color:"#64748b", fontSize:"10px", marginTop:"4px" }}>
-          送付先：菊地　/ Teamsチャット または IS・SF_棚卸サポート チャンネル
+      {exportAllDone && <div style={{ color:"#64748b", fontSize:"10px", marginTop:"4px" }}>送付先：菊地　/ Teamsチャット または IS・SF_棚卸サポート チャンネル</div>}
+      <div style={{ color:"#64748b", fontSize:"10px", marginTop:"8px" }}>※ CSVはUTF-8（BOM付き）形式です。Excelで直接開けます。</div>
+    </div>
+  );
+  const exportCompact = (
+    <div style={{ background:"#0f172a", border:"2px solid #16a34a", borderRadius:"12px", padding:"18px 20px", marginBottom:"16px" }}>
+      <div style={{ color:"#4ade80", fontSize:"11px", fontWeight:"700", marginBottom:"10px" }}>📥 管理台帳エクスポート</div>
+      {!exportAllDone && (
+        <div style={{ background:"#451a03", border:"1px solid #f97316", borderRadius:"8px", padding:"8px 12px", marginBottom:"12px", display:"flex", alignItems:"center", gap:"8px" }}>
+          <span style={{ fontSize:"14px" }}>🔒</span>
+          <span style={{ color:"#fed7aa", fontSize:"11px", fontWeight:"600" }}>1件以上回答するとCSVダウンロードが可能になります</span>
         </div>
       )}
+      <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", alignItems:"center" }}>
+        <Btn onClick={handleExportOwner} v="success" disabled={!exportAllDone}>⬇️ 自分の担当分をCSVエクスポート</Btn>
+        {exportDone && <span style={{ color:"#4ade80", fontSize:"11px", fontWeight:"600" }}>✅ ダウンロード完了！</span>}
+      </div>
+      <div style={{ color:"#64748b", fontSize:"10px", marginTop:"8px" }}>※ CSVはUTF-8（BOM付き）形式です。Excelで直接開けます。</div>
     </div>
-    );
-  };
-
+  );
   const ManualDownloadBtn = () => (
     <div style={{ background:"#0f172a", border:"1px solid #3b82f6", borderRadius:"10px", padding:"14px 18px", marginBottom:"16px", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px" }}>
       <div>
@@ -780,7 +777,7 @@ function TeamsInventoryBot() {
         ):null;
       })()}
 
-      {completedCount>0&&<ExportBox compact/>}
+      {completedCount>0&&exportCompact}
 
       <ManualDownloadBtn/>
       <div style={{ padding:"12px 14px", background:"#0f172a", border:"1px solid #1e293b", borderRadius:"9px" }}>
@@ -1171,7 +1168,7 @@ function TeamsInventoryBot() {
         </div>
       )}
 
-      <ExportBox/>
+      {exportFull}
       <ManualDownloadBtn/>
 
       <div style={{ background:"#0f172a", border:"1px solid #1e293b", borderRadius:"10px", padding:"14px", marginBottom:"14px" }}>
@@ -1202,6 +1199,6 @@ function TeamsInventoryBot() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(TeamsInventoryBot));
 </script>
-<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 17:59</div>
+<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 18:10</div>
 </body>
 </html>
