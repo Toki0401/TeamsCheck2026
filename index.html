@@ -119,15 +119,29 @@ const buildCSV = (teams, answers, allData) => {
 
 const downloadCSV = (csv, filename) => {
   // UTF-8 BOM付き（Excel日本語対応）
-  // data:URIスキームを使用（file://プロトコルでも動作）
   const bom = "\uFEFF";
-  const encoded = encodeURIComponent(bom + csv);
-  const a = document.createElement("a");
-  a.href = "data:text/csv;charset=utf-8," + encoded;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  const csvContent = bom + csv;
+  // Blob方式（モダンブラウザ推奨）
+  if (window.Blob && window.URL && window.URL.createObjectURL) {
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.setAttribute("download", filename);
+    document.body.appendChild(a);
+    a.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
+    setTimeout(() => { URL.revokeObjectURL(url); if (a.parentNode) a.parentNode.removeChild(a); }, 300);
+  } else {
+    // フォールバック：data:URI方式
+    const encoded = encodeURIComponent(csvContent);
+    const a = document.createElement("a");
+    a.href = "data:text/csv;charset=utf-8," + encoded;
+    a.setAttribute("download", filename);
+    document.body.appendChild(a);
+    a.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
+    setTimeout(() => { if (a.parentNode) a.parentNode.removeChild(a); }, 300);
+  }
 };
 
 // ===== メインコンポーネント =====
@@ -1188,6 +1202,6 @@ function TeamsInventoryBot() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(TeamsInventoryBot));
 </script>
-<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 17:51</div>
+<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 17:55</div>
 </body>
 </html>
