@@ -117,32 +117,7 @@ const buildCSV = (teams, answers, allData) => {
   return lines.join("\n");
 };
 
-const downloadCSV = (csv, filename) => {
-  // UTF-8 BOM付き（Excel日本語対応）
-  const bom = "\uFEFF";
-  const csvContent = bom + csv;
-  // Blob方式（モダンブラウザ推奨）
-  if (window.Blob && window.URL && window.URL.createObjectURL) {
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-    a.setAttribute("download", filename);
-    document.body.appendChild(a);
-    a.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
-    setTimeout(() => { URL.revokeObjectURL(url); if (a.parentNode) a.parentNode.removeChild(a); }, 300);
-  } else {
-    // フォールバック：data:URI方式
-    const encoded = encodeURIComponent(csvContent);
-    const a = document.createElement("a");
-    a.href = "data:text/csv;charset=utf-8," + encoded;
-    a.setAttribute("download", filename);
-    document.body.appendChild(a);
-    a.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
-    setTimeout(() => { if (a.parentNode) a.parentNode.removeChild(a); }, 300);
-  }
-};
+// downloadCSVはwindow.downloadCSVとして定義（Babel外）
 
 // ===== メインコンポーネント =====
 function TeamsInventoryBot() {
@@ -264,7 +239,7 @@ function TeamsInventoryBot() {
     const csv = buildCSV(teams, answers, allData);
     const date = new Date().toISOString().slice(0,10).replace(/-/g,"");
     const name = ownerEmail.split("@")[0];
-    downloadCSV(csv, `Teams棚卸回答_${name}_${date}.csv`);
+    window.downloadCSV(csv, `Teams棚卸回答_${name}_${date}.csv`);
     setExportDone(true);
     setTimeout(() => setExportDone(false), 3000);
   };
@@ -400,8 +375,11 @@ function TeamsInventoryBot() {
         </div>
       )}
       <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", alignItems:"center" }}>
-        <Btn onClick={handleExportOwner} v="success" disabled={!exportAllDone}>⬇️ 自分の担当分をCSVエクスポート</Btn>
-        {exportDone && <span style={{ color:"#4ade80", fontSize:"11px", fontWeight:"600" }}>✅ ダウンロード完了！</span>}
+        <button type="button" onClick={exportAllDone ? handleExportOwner : undefined}
+          style={{ background:exportAllDone?"linear-gradient(135deg,#059669,#047857)":"#1e293b", color:exportAllDone?"white":"#475569", border:exportAllDone?"none":"1px solid #334155", padding:"11px 20px", borderRadius:"8px", fontSize:"13px", fontWeight:"700", cursor:exportAllDone?"pointer":"not-allowed", opacity:exportAllDone?1:0.6 }}>
+          ⬇️ 自分の担当分をCSVエクスポート
+        </button>
+        {exportDone && <span style={{ color:"#4ade80", fontSize:"12px", fontWeight:"600" }}>✅ ダウンロード完了！</span>}
       </div>
       {exportAllDone && <div style={{ color:"#64748b", fontSize:"10px", marginTop:"4px" }}>送付先：菊地　/ Teamsチャット または IS・SF_棚卸サポート チャンネル</div>}
       <div style={{ color:"#64748b", fontSize:"10px", marginTop:"8px" }}>※ CSVはUTF-8（BOM付き）形式です。Excelで直接開けます。</div>
@@ -417,7 +395,10 @@ function TeamsInventoryBot() {
         </div>
       )}
       <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", alignItems:"center" }}>
-        <Btn onClick={handleExportOwner} v="success" disabled={!exportAllDone}>⬇️ 自分の担当分をCSVエクスポート</Btn>
+        <button type="button" onClick={exportAllDone ? handleExportOwner : undefined}
+          style={{ background:exportAllDone?"linear-gradient(135deg,#059669,#047857)":"#1e293b", color:exportAllDone?"white":"#475569", border:exportAllDone?"none":"1px solid #334155", padding:"11px 20px", borderRadius:"8px", fontSize:"13px", fontWeight:"700", cursor:exportAllDone?"pointer":"not-allowed", opacity:exportAllDone?1:0.6 }}>
+          ⬇️ 自分の担当分をCSVエクスポート
+        </button>
         {exportDone && <span style={{ color:"#4ade80", fontSize:"11px", fontWeight:"600" }}>✅ ダウンロード完了！</span>}
       </div>
       <div style={{ color:"#64748b", fontSize:"10px", marginTop:"8px" }}>※ CSVはUTF-8（BOM付き）形式です。Excelで直接開けます。</div>
@@ -1199,6 +1180,32 @@ function TeamsInventoryBot() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(TeamsInventoryBot));
 </script>
-<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 18:10</div>
+<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 18:18</div>
+<script>
+window.downloadCSV = function(csv, filename) {
+  var bom = '\uFEFF';
+  var csvContent = bom + csv;
+  try {
+    var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    var url = window.URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.style.cssText = 'position:fixed;top:-100px;left:-100px;';
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(function(){ window.URL.revokeObjectURL(url); document.body.removeChild(link); }, 500);
+  } catch(e) {
+    var encoded = encodeURIComponent(csvContent);
+    var link2 = document.createElement('a');
+    link2.style.cssText = 'position:fixed;top:-100px;left:-100px;';
+    link2.href = 'data:text/csv;charset=utf-8,' + encoded;
+    link2.download = filename;
+    document.body.appendChild(link2);
+    link2.click();
+    setTimeout(function(){ document.body.removeChild(link2); }, 500);
+  }
+};
+</script>
 </body>
 </html>
