@@ -48,7 +48,7 @@ const TEAMS_B64_GZ = "H4sIAI5JDWoC/+y9aVMbSbo2/FeImYgT54lodGzc3TPzfHq9dY972jbTMO
 const EMAIL_DEPT_MAP = {"tatsuya.watanabe@qolony.co.jp": "HR戦略推進室", "r.takeda@qolony.co.jp": "HR戦略推進室/HRオペレーションチーム", "yoshifumi.okumoto@qolony.co.jp": "HR戦略推進室/HRオペレーションチーム", "toshiyuki.tanaka@qolony.co.jp": "インキュべーション事業部", "tsuyoshi.ochiai@qolony.co.jp": "インキュべーション事業部", "takehito.shiga@qolony.co.jp": "インキュべーション事業部", "k.tabei@qolony.co.jp": "エグゼクティブ", "kazuyuki.otsu@qolony.co.jp": "エグゼクティブ", "j.yoshino@qolony.co.jp": "エンタープライズ・アクセラレーション事業部", "toshiyuki.iwami@qolony.co.jp": "エンタープライズ・アクセラレーション事業部", "minoru.kamishima@qolony.co.jp": "エンタープライズ・アクセラレーション事業部", "kanta.nagashima@qolony.co.jp": "エンタープライズ・アクセラレーション事業部", "chisung.kong@qolony.co.jp": "エンタープライズ・アクセラレーション事業部", "kota.nakae@qolony.co.jp": "エンタープライズ・トランスフォーメーション事業部", "megumi.kaneta@qolony.co.jp": "エンタープライズ・トランスフォーメーション事業部", "y.takagi@qolony.co.jp": "エンタープライズ・トランスフォーメーション事業部", "rena.takeuchi@qolony.co.jp": "エンタープライズ・トランスフォーメーション事業部", "tenchi.tanaka@qolony.co.jp": "エンタープライズ・トランスフォーメーション事業部", "rie.yamadaya@qolony.co.jp": "エンタープライズ・トランスフォーメーション事業部", "takashi.fukaya@qolony.co.jp": "エンタープライズ・トランスフォーメーション事業部", "n.matsumura@qolony.co.jp": "エンタープライズ・トランスフォーメーション事業部", "koji.oishi@qolony.co.jp": "グロースアーキテクチャ事業部", "saaya.takai@qolony.co.jp": "グロースアーキテクチャ事業部", "kenta.kujime@qolony.co.jp": "グロースアーキテクチャ事業部", "masatake.sugiura@qolony.co.jp": "グロースアーキテクチャ事業部", "jooyun.kim@qolony.co.jp": "グロースアーキテクチャ事業部", "kazuyoshi.hirata@qolony.co.jp": "グロースアーキテクチャ事業部", "haruhi.saka@qolony.co.jp": "グロースアーキテクチャ事業部", "junji.ono@qolony.co.jp": "グロースアーキテクチャ事業部", "masayuki.iwamoto@qolony.co.jp": "グロースアーキテクチャ事業部", "n.tani@qolony.co.jp": "ストラテジー&テクノロジー事業部", "masaru.koga@qolony.co.jp": "ストラテジー&テクノロジー事業部", "n.ikeshima@qolony.co.jp": "ストラテジー&テクノロジー事業部", "jun.nakahara@qolony.co.jp": "ストラテジー&テクノロジー事業部", "yoshimi.nukui@qolony.co.jp": "ストラテジー&テクノロジー事業部", "yasunori.oshiro@qolony.co.jp": "上場準備室・内部監査", "m.shintani@qolony.co.jp": "上場準備室・内部監査/経理チーム", "noriyuki.ando@qolony.co.jp": "経営企画室/HCセールスチーム", "h.watanabe@qolony.co.jp": "経営企画室/Human Capitalチーム", "c.shibazaki@qolony.co.jp": "経営推進室/ビジネスサポートチーム", "m.takishita@qolony.co.jp": "経営推進室/情報システム・SFチーム", "takeshi.takayanagi@qolony.co.jp": "経営推進室/情報システム・SFチーム", "sf-tanaoroshi@qolony.co.jp": "経営推進室/情報システム・SFチーム"};
 const DEPT_LIST = ["HR戦略推進室", "HR戦略推進室/HRオペレーションチーム", "インキュべーション事業部", "エグゼクティブ", "エンタープライズ・アクセラレーション事業部", "エンタープライズ・トランスフォーメーション事業部", "グロースアーキテクチャ事業部", "ストラテジー&テクノロジー事業部", "上場準備室・内部監査", "上場準備室・内部監査/経理チーム", "経営企画室/HCセールスチーム", "経営企画室/Human Capitalチーム", "経営推進室/ビジネスサポートチーム", "経営推進室/情報システム・SFチーム"];
 const PERSON_LIST = [{"email": "tatsuya.watanabe@qolony.co.jp", "name": "渡邉達也", "dept": "HR戦略推進室"}, {"email": "yoshifumi.okumoto@qolony.co.jp", "name": "奥本佳史", "dept": "HR戦略推進室/HRオペレーションチーム"}, {"email": "r.takeda@qolony.co.jp", "name": "竹田莉子", "dept": "HR戦略推進室/HRオペレーションチーム"}, {"email": "takehito.shiga@qolony.co.jp", "name": "志賀雄仁", "dept": "インキュべーション事業部"}, {"email": "toshiyuki.tanaka@qolony.co.jp", "name": "田中稔之", "dept": "インキュべーション事業部"}, {"email": "tsuyoshi.ochiai@qolony.co.jp", "name": "落合剛", "dept": "インキュべーション事業部"}, {"email": "kazuyuki.otsu@qolony.co.jp", "name": "大津和行", "dept": "エグゼクティブ"}, {"email": "k.tabei@qolony.co.jp", "name": "田部井健", "dept": "エグゼクティブ"}, {"email": "minoru.kamishima@qolony.co.jp", "name": "上島稔", "dept": "エンタープライズ・アクセラレーション事業部"}, {"email": "j.yoshino@qolony.co.jp", "name": "吉野詢", "dept": "エンタープライズ・アクセラレーション事業部"}, {"email": "chisung.kong@qolony.co.jp", "name": "孔致晟", "dept": "エンタープライズ・アクセラレーション事業部"}, {"email": "kanta.nagashima@qolony.co.jp", "name": "永島幹大", "dept": "エンタープライズ・アクセラレーション事業部"}, {"email": "toshiyuki.iwami@qolony.co.jp", "name": "石見敏之", "dept": "エンタープライズ・アクセラレーション事業部"}, {"email": "kota.nakae@qolony.co.jp", "name": "中江宏太", "dept": "エンタープライズ・トランスフォーメーション事業部"}, {"email": "rie.yamadaya@qolony.co.jp", "name": "山田谷梨江", "dept": "エンタープライズ・トランスフォーメーション事業部"}, {"email": "n.matsumura@qolony.co.jp", "name": "松村信成", "dept": "エンタープライズ・トランスフォーメーション事業部"}, {"email": "takashi.fukaya@qolony.co.jp", "name": "深谷崇", "dept": "エンタープライズ・トランスフォーメーション事業部"}, {"email": "tenchi.tanaka@qolony.co.jp", "name": "田中天智", "dept": "エンタープライズ・トランスフォーメーション事業部"}, {"email": "rena.takeuchi@qolony.co.jp", "name": "竹内礼奈", "dept": "エンタープライズ・トランスフォーメーション事業部"}, {"email": "megumi.kaneta@qolony.co.jp", "name": "金田めぐみ", "dept": "エンタープライズ・トランスフォーメーション事業部"}, {"email": "y.takagi@qolony.co.jp", "name": "高木優", "dept": "エンタープライズ・トランスフォーメーション事業部"}, {"email": "haruhi.saka@qolony.co.jp", "name": "坂晴日", "dept": "グロースアーキテクチャ事業部"}, {"email": "koji.oishi@qolony.co.jp", "name": "大石幸治", "dept": "グロースアーキテクチャ事業部"}, {"email": "junji.ono@qolony.co.jp", "name": "小野准示", "dept": "グロースアーキテクチャ事業部"}, {"email": "masayuki.iwamoto@qolony.co.jp", "name": "岩本真行", "dept": "グロースアーキテクチャ事業部"}, {"email": "kazuyoshi.hirata@qolony.co.jp", "name": "平田和義", "dept": "グロースアーキテクチャ事業部"}, {"email": "masatake.sugiura@qolony.co.jp", "name": "杉浦正武", "dept": "グロースアーキテクチャ事業部"}, {"email": "jooyun.kim@qolony.co.jp", "name": "金注延", "dept": "グロースアーキテクチャ事業部"}, {"email": "saaya.takai@qolony.co.jp", "name": "高井沙彩", "dept": "グロースアーキテクチャ事業部"}, {"email": "kenta.kujime@qolony.co.jp", "name": "鬮目健太", "dept": "グロースアーキテクチャ事業部"}, {"email": "jun.nakahara@qolony.co.jp", "name": "中原純", "dept": "ストラテジー&テクノロジー事業部"}, {"email": "masaru.koga@qolony.co.jp", "name": "古賀勝", "dept": "ストラテジー&テクノロジー事業部"}, {"email": "n.ikeshima@qolony.co.jp", "name": "池嶋直樹", "dept": "ストラテジー&テクノロジー事業部"}, {"email": "n.tani@qolony.co.jp", "name": "谷直紀", "dept": "ストラテジー&テクノロジー事業部"}, {"email": "yoshimi.nukui@qolony.co.jp", "name": "貫井良実", "dept": "ストラテジー&テクノロジー事業部"}, {"email": "yasunori.oshiro@qolony.co.jp", "name": "大城安則", "dept": "上場準備室・内部監査"}, {"email": "m.shintani@qolony.co.jp", "name": "新谷美和", "dept": "上場準備室・内部監査/経理チーム"}, {"email": "noriyuki.ando@qolony.co.jp", "name": "安藤則行", "dept": "経営企画室/HCセールスチーム"}, {"email": "h.watanabe@qolony.co.jp", "name": "渡邉裕也", "dept": "経営企画室/Human Capitalチーム"}, {"email": "c.shibazaki@qolony.co.jp", "name": "柴崎知佳", "dept": "経営推進室/ビジネスサポートチーム"}, {"email": "sf-tanaoroshi@qolony.co.jp", "name": "情報システム・SFチーム", "dept": "経営推進室/情報システム・SFチーム"}, {"email": "m.takishita@qolony.co.jp", "name": "瀧下香織", "dept": "経営推進室/情報システム・SFチーム"}, {"email": "takeshi.takayanagi@qolony.co.jp", "name": "高柳剛士", "dept": "経営推進室/情報システム・SFチーム"}];
-const DEADLINE = new Date("2026-06-19");
+const DEADLINE = new Date("2026-06-30");
 const MINS_PER_TEAM = 3;
 
 // CSVエクスポート用ヘッダー定義（管理台帳Excelと同じ列順）
@@ -299,7 +299,7 @@ function TeamsInventoryBot() {
 
   const AlertBar = () => !isUrgent ? null : (
     <div style={{ background: "linear-gradient(90deg,#dc2626,#b91c1c)", color:"white", padding:"9px 20px", textAlign:"center", fontWeight:"bold", fontSize:"13px" }}>
-      ⚠️ 回答期限（2026年6月19日）まであと{daysUntilDeadline}日！本日中に回答をお願いします
+      ⚠️ 回答期限（2026年6月30日）まであと{daysUntilDeadline}日！本日中に回答をお願いします
     </div>
   );
   const Header = ({ sub }) => (
@@ -362,7 +362,9 @@ function TeamsInventoryBot() {
   );
 
   // エクスポートボックス（完了画面・ウェルカム画面で使いまわし）
-  const ExportBox = ({ compact=false }) => (
+  const ExportBox = ({ compact=false }) => {
+    const allDone = completedCount >= teams.length && teams.length > 0;
+    return (
     <div style={{ background: compact ? "#0f172a" : "linear-gradient(135deg,#0f2d0f,#14532d)", border:"2px solid #16a34a", borderRadius:"12px", padding:"18px 20px", marginBottom:"16px" }}>
       <div style={{ color:"#4ade80", fontSize:compact?"11px":"13px", fontWeight:"700", marginBottom:"10px" }}>
         📥 管理台帳エクスポート
@@ -373,8 +375,26 @@ function TeamsInventoryBot() {
           IS・SFチーム用管理台帳Excelの「棚卸回答台帳」シートに貼り付けてご利用ください。
         </div>
       )}
+      {!allDone && (
+        <div style={{ background:"#451a03", border:"1px solid #f97316", borderRadius:"8px", padding:"8px 12px", marginBottom:"12px", display:"flex", alignItems:"center", gap:"8px" }}>
+          <span style={{ fontSize:"14px" }}>🔒</span>
+          <span style={{ color:"#fed7aa", fontSize:"11px", fontWeight:"600" }}>
+            CSVは全件回答するまでダウンロードボタンはアクティブになりません<br/>
+            <span style={{ color:"#fb923c", fontWeight:"400" }}>（残り {teams.length - completedCount} 件未回答）</span>
+          </span>
+        </div>
+      )}
+      {!compact && allDone && (
+        <div style={{ background:"#1e3a8a", border:"1.5px solid #60a5fa", borderRadius:"10px", padding:"12px 14px", marginBottom:"12px" }}>
+          <div style={{ color:"#93c5fd", fontSize:"12px", fontWeight:"700", marginBottom:"6px" }}>📋 回答完了後の手順</div>
+          <div style={{ color:"white", fontSize:"14px", fontWeight:"700", lineHeight:"1.9" }}>
+            ① 下のボタンでCSVをダウンロード<br/>
+            <span style={{ color:"#fbbf24", fontSize:"15px" }}>② 菊地（IS・SFチーム）に<br/>　 TeamsでCSVファイルを送付</span>
+          </div>
+        </div>
+      )}
       <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", alignItems:"center" }}>
-        <button onClick={handleExportOwner} style={{ background:"linear-gradient(135deg,#15803d,#166534)", color:"white", border:"none", padding:"10px 18px", borderRadius:"8px", fontSize:"12px", fontWeight:"700", cursor:"pointer", display:"flex", alignItems:"center", gap:"6px" }}>
+        <button onClick={allDone ? handleExportOwner : undefined} style={{ background: allDone ? "linear-gradient(135deg,#15803d,#166534)" : "#1e293b", color: allDone ? "white" : "#475569", border: allDone ? "none" : "1px solid #334155", padding:"10px 18px", borderRadius:"8px", fontSize:"12px", fontWeight:"700", cursor: allDone ? "pointer" : "not-allowed", display:"flex", alignItems:"center", gap:"6px", opacity: allDone ? 1 : 0.6 }}>
           ⬇️ 自分の担当分をCSVエクスポート
         </button>
         {exportDone && <span style={{ color:"#4ade80", fontSize:"11px", fontWeight:"600" }}>✅ ダウンロード完了！</span>}
@@ -382,8 +402,14 @@ function TeamsInventoryBot() {
       <div style={{ color:"#64748b", fontSize:"10px", marginTop:"8px" }}>
         ※ CSVはUTF-8（BOM付き）形式です。Excelで直接開けます。
       </div>
+      {!compact && allDone && (
+        <div style={{ color:"#64748b", fontSize:"10px", marginTop:"4px" }}>
+          送付先：菊地　/ Teamsチャット または IS・SF_棚卸サポート チャンネル
+        </div>
+      )}
     </div>
-  );
+    );
+  };
 
   const ManualDownloadBtn = () => (
     <div style={{ background:"#0f172a", border:"1px solid #3b82f6", borderRadius:"10px", padding:"14px 18px", marginBottom:"16px", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px" }}>
@@ -507,7 +533,7 @@ function TeamsInventoryBot() {
         <div style={{ marginTop:"16px", padding:"12px", background:"#1e293b", borderRadius:"8px", borderLeft:"3px solid #3b82f6" }}>
           <div style={{ color:"#60a5fa", fontSize:"10px", fontWeight:"600", marginBottom:"5px" }}>📋 棚卸スケジュール</div>
           <div style={{ color:"#94a3b8", fontSize:"10px", lineHeight:"1.8" }}>
-            回答期限：<span style={{ color:"#f87171", fontWeight:"700" }}>2026年6月19日（金）</span>（残り{daysUntilDeadline}日）
+            回答期限：<span style={{ color:"#f87171", fontWeight:"700" }}>2026年6月30日（火）</span>（残り{daysUntilDeadline}日）
           </div>
         </div>
         <div style={{ marginTop:"12px" }}>
@@ -745,7 +771,7 @@ function TeamsInventoryBot() {
       <div style={{ padding:"12px 14px", background:"#0f172a", border:"1px solid #1e293b", borderRadius:"9px" }}>
         <div style={{ color:"#f87171", fontSize:"10px", fontWeight:"600", marginBottom:"3px" }}>⏰ リマインドについて</div>
         <div style={{ color:"#94a3b8", fontSize:"10px", lineHeight:"1.7" }}>
-          {daysUntilDeadline>7?`回答期限は2026年6月19日（金）（残り${daysUntilDeadline}日）です。3営業日後にリマインドをお送りします。`:`⚠️ 回答期限（6月19日）まで残り${daysUntilDeadline}日！毎日リマインドをお送りします。`}
+          {daysUntilDeadline>7?`回答期限は2026年6月30日（火）（残り${daysUntilDeadline}日）です。3営業日後にリマインドをお送りします。`:`⚠️ 回答期限（6月30日）まで残り${daysUntilDeadline}日！毎日リマインドをお送りします。`}
         </div>
       </div>
 
@@ -1135,6 +1161,12 @@ function TeamsInventoryBot() {
 
       <div style={{ background:"#0f172a", border:"1px solid #1e293b", borderRadius:"10px", padding:"14px", marginBottom:"14px" }}>
         <div style={{ color:"#60a5fa", fontSize:"11px", fontWeight:"600", marginBottom:"7px" }}>📋 今後の流れ</div>
+        <div style={{ background:"#1e3a8a", border:"2px solid #fbbf24", borderRadius:"10px", padding:"14px 16px", marginBottom:"10px" }}>
+          <div style={{ color:"#fde68a", fontSize:"16px", fontWeight:"800", lineHeight:"2" }}>
+            ① CSVをダウンロードしてください<br/>
+            ② 菊地（IS・SFチーム）に<br/>　 TeamsでCSVを送付してください
+          </div>
+        </div>
         <div style={{ color:"#94a3b8", fontSize:"11px", lineHeight:"2" }}>
           情報システム・SFチームが回答内容を確認し、順次対応を実施します<br/>
           アーカイブ・削除完了後にメールでご連絡します<br/>
@@ -1155,6 +1187,6 @@ function TeamsInventoryBot() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(TeamsInventoryBot));
 </script>
-<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/02 12:18</div>
+<div style="position:fixed;bottom:10px;right:12px;color:#334155;font-size:9px;font-family:monospace;pointer-events:none;z-index:9999;">更新: 2026/06/05 17:39</div>
 </body>
 </html>
